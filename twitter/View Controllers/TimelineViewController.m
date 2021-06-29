@@ -16,6 +16,7 @@
 @interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic) NSMutableArray *arrayOfTweets;
 
 @end
@@ -25,14 +26,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    [self loadTweets];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(loadTweets) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex: 0];
+}
+
+- (void)loadTweets {
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             self.arrayOfTweets = tweets;
             [self.tableView reloadData];
+            
+            [self.refreshControl endRefreshing];
+            
+            // self.refreshControl = [[UIRefreshControl alloc] init];
             
             NSLog(@"😎😎😎 Successfully loaded home timeline");
             /*
@@ -42,11 +57,15 @@
             }
              */
             
-            [self.tableView reloadData];
+            
+            
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
         NSLog(@"hola");
+        
+        // [self.refreshControl endRefreshing];
+        
     }];
     
 }
@@ -66,6 +85,33 @@
     
     [[APIManager shared] logout];
     
+}
+
+// Makes a network request to get updated data
+// Updates the tableView with the new data
+// Hides the RefreshControl
+- (void)beginRefresh:(UIRefreshControl *)refreshControl {
+
+      // Create NSURL and NSURLRequest
+
+      NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                                            delegate:nil
+                                                       delegateQueue:[NSOperationQueue mainQueue]];
+      session.configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+  
+      NSURLSessionDataTask *task = [session dataTaskWithRequest:self.arrayOfTweets completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+  
+         // ... Use the new data to update the data source ...
+
+         // Reload the tableView now that there is new data
+          [self.tableView reloadData];
+
+         // Tell the refreshControl to stop spinning
+          [refreshControl endRefreshing];
+
+      }];
+  
+      [task resume];
 }
 
 
