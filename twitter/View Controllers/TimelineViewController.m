@@ -13,6 +13,7 @@
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
+#import "DateTools/DateTools.h"
 
 @interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -138,8 +139,7 @@
     cell.retweetCountLabel.text = [@(tweet.retweetCount) stringValue];
     cell.favCountLabel.text = [@(tweet.favoriteCount) stringValue];
     
-    NSLog(@"%@", tweet.text);
-    
+    cell.timeAgoLabel.text = tweet.dateCreated.shortTimeAgoSinceNow;
     
     NSString *URLString = tweet.user.profilePicture;
     NSURL *url = [NSURL URLWithString:URLString];

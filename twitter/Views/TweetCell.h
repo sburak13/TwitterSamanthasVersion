@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *retweetCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *favCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
 
 @property (nonatomic, weak) Tweet *tweet;
 
