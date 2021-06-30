@@ -32,9 +32,8 @@
     NSLog(@"hellooooo");
     NSLog(@"%@", newVar);
     
-    // TODO: don't know how to get self.tweetTextView.text to work
-    // NSString *newTweetText = self.tweetTextView.text;
-    [[APIManager shared]postStatusWithText:@"HEY This is my tweet 😀" completion:^(Tweet *tweet, NSError *error) {
+    NSString *newTweetText = self.tweetTextView.text;
+    [[APIManager shared]postStatusWithText:newTweetText completion:^(Tweet *tweet, NSError *error) {
         if(error){
             NSLog(@"Error composing Tweet: %@", error.localizedDescription);
         }

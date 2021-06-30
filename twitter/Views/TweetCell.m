@@ -75,6 +75,35 @@
     
 }
 
+- (IBAction)didTapRetweet:(id)sender {
+    UIButton *btn = (UIButton *)sender;
+    self.tweet.retweeted = !self.tweet.retweeted;
+    if (self.tweet.retweeted) {
+        self.tweet.retweetCount += 1;
+        [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                 NSLog(@"Error retweeting tweet: %@", error.localizedDescription);
+            }
+            else{
+                NSLog(@"Successfully retweeted the following Tweet: %@", tweet.text);
+                [btn setImage:[UIImage imageNamed:@"retweet-icon-green.png"] forState:UIControlStateNormal];
+            }
+        }];
+    } else {
+        self.tweet.favoriteCount -= 1;
+        [[APIManager shared] unretweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                 NSLog(@"Error unretweeting tweet: %@", error.localizedDescription);
+            }
+            else{
+                NSLog(@"Successfully unretweeted the following Tweet: %@", tweet.text);
+                [btn setImage:[UIImage imageNamed:@"retweet-icon.png"] forState:UIControlStateNormal];
+            }
+        }];
+    }
+    self.retweetCountLabel.text = [@(self.tweet.retweetCount) stringValue];
+    
+}
 
 
 
