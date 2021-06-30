@@ -134,6 +134,10 @@
     cell.tweet = tweet;
     cell.authorLabel.text = tweet.user.name;
     cell.tweetTextLabel.text = tweet.text;
+    cell.usernameLabel.text = [@"@" stringByAppendingString:tweet.user.screenName];
+    cell.retweetCountLabel.text = [@(tweet.retweetCount) stringValue];
+    cell.favCountLabel.text = [@(tweet.favoriteCount) stringValue];
+    
     NSLog(@"%@", tweet.text);
     
     

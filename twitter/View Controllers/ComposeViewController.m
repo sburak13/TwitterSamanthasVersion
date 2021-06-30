@@ -10,7 +10,7 @@
 #import "APIManager.h"
 
 @interface ComposeViewController ()
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UITextView *tweetTextView;
 
 @end
 
@@ -27,13 +27,14 @@
 
 - (IBAction)didTapTweetButton:(UIBarButtonItem *)sender {
     
-    NSString *newVar = self.textView.text;
-    NSLog(@"%@", self.textView.text);
+    NSString *newVar = self.tweetTextView.text;
+    NSLog(@"%@", self.tweetTextView.text);
     NSLog(@"hellooooo");
     NSLog(@"%@", newVar);
     
-    // TODO: don't know how to get self.textView.text to work
-    [[APIManager shared]postStatusWithText:@" 4 This is my tweet 😀" completion:^(Tweet *tweet, NSError *error) {
+    // TODO: don't know how to get self.tweetTextView.text to work
+    // NSString *newTweetText = self.tweetTextView.text;
+    [[APIManager shared]postStatusWithText:@"HEY This is my tweet 😀" completion:^(Tweet *tweet, NSError *error) {
         if(error){
             NSLog(@"Error composing Tweet: %@", error.localizedDescription);
         }
