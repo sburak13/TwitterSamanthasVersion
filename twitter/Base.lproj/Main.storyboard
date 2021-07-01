@@ -54,7 +54,7 @@
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="37.331334332833585"/>
         </scene>
-        <!--Home Timeline-->
+        <!--Home-->
         <scene sceneID="1Tv-nE-1AW">
             <objects>
                 <viewController storyboardIdentifier="TimelineViewController" id="Lbl-k5-U4i" customClass="TimelineViewController" sceneMemberID="viewController">
@@ -193,7 +193,7 @@
                             <constraint firstAttribute="bottom" secondItem="rMf-uU-5kw" secondAttribute="bottom" id="tc1-jb-X1V"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Home Timeline" id="MOc-fV-EZE">
+                    <navigationItem key="navigationItem" title="Home" id="MOc-fV-EZE">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="KJe-1L-z5k">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="VJe-yv-zGc">
                                 <rect key="frame" x="16" y="7" width="48" height="30"/>
@@ -204,7 +204,7 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Compose" id="G3A-JF-91l">
+                        <barButtonItem key="rightBarButtonItem" title="Compose" image="edit-icon" id="G3A-JF-91l">
                             <connections>
                                 <segue destination="pUW-LY-C9t" kind="presentation" identifier="composeViewSegue" id="cKu-qq-CBu"/>
                             </connections>
@@ -378,7 +378,7 @@
             </objects>
             <point key="canvasLocation" x="2667.6923076923076" y="35.545023696682463"/>
         </scene>
-        <!--Compose View Controller-->
+        <!--Compose-->
         <scene sceneID="k4O-km-70X">
             <objects>
                 <viewController id="Oue-a0-IdB" customClass="ComposeViewController" sceneMemberID="viewController">
@@ -386,20 +386,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YHp-cn-2v3">
-                                <rect key="frame" x="20" y="110" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YHp-cn-2v3">
+                                <rect key="frame" x="20" y="118" width="350" height="205"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="205" id="75H-cz-Qvj"/>
+                                    <constraint firstAttribute="width" constant="350" id="TAb-Rp-7vN"/>
+                                </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UsK-Nl-mf8">
+                                <rect key="frame" x="352" y="333" width="13" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9dP-0R-yNp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9dP-0R-yNp" firstAttribute="trailing" secondItem="YHp-cn-2v3" secondAttribute="trailing" constant="20" id="3bm-Mm-fvb"/>
+                            <constraint firstItem="YHp-cn-2v3" firstAttribute="leading" secondItem="9dP-0R-yNp" secondAttribute="leading" constant="20" id="Oko-q4-gdM"/>
+                            <constraint firstItem="9dP-0R-yNp" firstAttribute="trailing" secondItem="UsK-Nl-mf8" secondAttribute="trailing" constant="25" id="aku-bC-Gqu"/>
+                            <constraint firstItem="YHp-cn-2v3" firstAttribute="top" secondItem="9dP-0R-yNp" secondAttribute="top" constant="62" id="dVe-aV-8oR"/>
+                            <constraint firstItem="UsK-Nl-mf8" firstAttribute="top" secondItem="YHp-cn-2v3" secondAttribute="bottom" constant="10" id="sOx-3P-p5b"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="b2F-pV-jO9">
-                        <barButtonItem key="leftBarButtonItem" title="Close" id="EdZ-nv-o5H">
+                    <navigationItem key="navigationItem" title="Compose" id="b2F-pV-jO9">
+                        <barButtonItem key="leftBarButtonItem" title="Close" image="close-icon" id="EdZ-nv-o5H">
                             <connections>
                                 <action selector="didTapCloseButton:" destination="Oue-a0-IdB" id="XhP-eR-b4O"/>
                             </connections>
@@ -411,12 +427,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="tweetCharCount" destination="UsK-Nl-mf8" id="fUW-dk-8Rv"/>
                         <outlet property="tweetTextView" destination="YHp-cn-2v3" id="lzA-kn-svF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aa0-km-Jnc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1331.7757009345794" y="841.68466522678193"/>
+            <point key="canvasLocation" x="1330.7692307692307" y="840.99526066350711"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WUT-Ke-VeR">
@@ -457,6 +474,8 @@
     </scenes>
     <resources>
         <image name="TwitterLogoBlue" width="133.33332824707031" height="133.33332824707031"/>
+        <image name="close-icon" width="26" height="24"/>
+        <image name="edit-icon" width="30" height="27"/>
         <image name="favor-icon" width="30" height="30"/>
         <image name="profile-Icon" width="26" height="26"/>
         <image name="retweet-icon" width="30" height="30"/>
