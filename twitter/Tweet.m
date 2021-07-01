@@ -44,17 +44,29 @@
         // TODO: Format and set createdAtString
         // Format createdAt date string
         NSString *createdAtOriginalString = dictionary[@"created_at"];
+        NSLog(@"%@", createdAtOriginalString);
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         // Configure the input format to parse the date string
         formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
         // Convert String to Date
         NSDate *date = [formatter dateFromString:createdAtOriginalString];
+
         self.dateCreated = date;
+        NSLog(@"%@", self.dateCreated);
         // Configure output format
         formatter.dateStyle = NSDateFormatterShortStyle;
         formatter.timeStyle = NSDateFormatterNoStyle;
         // Convert Date to String
         self.createdAtString = [formatter stringFromDate:date];
+        // NSLog(@"%@", self.createdAtString);
+        
+        NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
+        timeFormatter.dateFormat = @"HH:mm";
+
+        NSString *timeString = [timeFormatter stringFromDate: self.dateCreated];
+        self.timeCreatedAt = timeString;
+
+
     }
     return self;
 }

@@ -12,8 +12,6 @@
 
 @interface DetailsViewController ()
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
 @end
 
 @implementation DetailsViewController
@@ -28,7 +26,7 @@
     self.retweetCountLabel2.text = [[@(self.tweet.retweetCount) stringValue] stringByAppendingString:@" Retweets"];
     self.favCountLabel2.text = [[@(self.tweet.favoriteCount) stringValue] stringByAppendingString:@" Likes"];
     
-    self.dateLabel.text = self.tweet.createdAtString;
+    self.dateLabel.text = [self.tweet.createdAtString stringByAppendingString:[@"     " stringByAppendingString:self.tweet.timeCreatedAt]];
     
     NSString *URLString = self.tweet.user.profilePicture;
     NSURL *url = [NSURL URLWithString:URLString];
@@ -36,8 +34,6 @@
     self.profileView2.image = nil;
     [self.profileView2 setImageWithURL:url];
     
-
-
 }
 
 - (IBAction)didTapFavorite2:(id)sender {
