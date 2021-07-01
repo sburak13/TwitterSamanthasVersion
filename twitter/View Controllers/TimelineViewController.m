@@ -27,9 +27,8 @@
 @implementation TimelineViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     
-    // UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [super viewDidLoad];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -39,36 +38,24 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(loadTweets) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex: 0];
+    
 }
 
 - (void)loadTweets {
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
+        
         if (tweets) {
             self.arrayOfTweets = tweets;
             [self.tableView reloadData];
-            
             [self.refreshControl endRefreshing];
-            
-            // self.refreshControl = [[UIRefreshControl alloc] init];
-            
-            NSLog(@"😎😎😎 Successfully loaded home timeline");
-            /*
-             for (NSDictionary *dictionary in tweets) {
-                NSString *text = dictionary[@"text"];
-                NSLog(@"%@", text);
-            }
-             */
+            NSLog(@"Successfully loaded home timeline");
             
         } else {
-            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+            NSLog(@"Error getting home timeline: %@", error.localizedDescription);
         }
-        NSLog(@"hola");
-        
-        // [self.refreshControl endRefreshing];
         
     }];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,7 +81,6 @@
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
 
       // Create NSURL and NSURLRequest
-
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     session.configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
   
@@ -114,8 +100,10 @@
 }
 
 - (void)didTweet:(Tweet*)tweet {
+    
     [self.arrayOfTweets insertObject:tweet atIndex:0];
     [self.tableView reloadData];
+    
 }
 
 #pragma mark - Navigation
@@ -139,33 +127,18 @@
 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    NSLog(@"hi");
+
     TweetCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
-    
-    cell.tweet = tweet;
-    cell.authorLabel.text = tweet.user.name;
-    cell.tweetTextLabel.text = tweet.text;
-    cell.usernameLabel.text = [@"@" stringByAppendingString:tweet.user.screenName];
-    cell.retweetCountLabel.text = [@(tweet.retweetCount) stringValue];
-    cell.favCountLabel.text = [@(tweet.favoriteCount) stringValue];
-    
-    cell.timeAgoLabel.text = tweet.dateCreated.shortTimeAgoSinceNow;
-    
-    NSString *URLString = tweet.user.profilePicture;
-    NSURL *url = [NSURL URLWithString:URLString];
-    // NSData *urlData = [NSData dataWithContentsOfURL:url];
-    
-    cell.profileView.image = nil;
-    [cell.profileView setImageWithURL:url];
-     
-    
+    [cell updateWithTweet:tweet];
     return cell;
-    
+     
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     return self.arrayOfTweets.count;
+    
 }
 
 @end

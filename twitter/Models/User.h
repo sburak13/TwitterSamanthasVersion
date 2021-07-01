@@ -12,14 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface User : NSObject
 
-// TODO: Add properties
+// Add properties
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *screenName;
 @property (nonatomic, strong) NSString *profilePicture;
 
-// TODO: Create initializer
+// Create initializer
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
-
 
 @end
 

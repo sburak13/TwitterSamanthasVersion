@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) Tweet *tweet;
 
+- (void)updateWithTweet:(Tweet *)tweet;
+
 @end
 
 NS_ASSUME_NONNULL_END

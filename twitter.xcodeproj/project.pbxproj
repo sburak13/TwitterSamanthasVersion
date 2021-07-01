@@ -111,10 +111,6 @@
 				6AD278E620BC4B970085BC29 /* Info.plist */,
 				6AD278E720BC4B970085BC29 /* main.m */,
 				727657B5268A65230073F214 /* Keys.plist */,
-				727657B7268A6EFF0073F214 /* User.h */,
-				727657B8268A6EFF0073F214 /* User.m */,
-				727657BA268A6F9F0073F214 /* Tweet.h */,
-				727657BB268A6F9F0073F214 /* Tweet.m */,
 			);
 			path = twitter;
 			sourceTree = "<group>";
@@ -133,6 +129,10 @@
 		6AD278F820BCBC140085BC29 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				727657B7268A6EFF0073F214 /* User.h */,
+				727657B8268A6EFF0073F214 /* User.m */,
+				727657BA268A6F9F0073F214 /* Tweet.h */,
+				727657BB268A6F9F0073F214 /* Tweet.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
