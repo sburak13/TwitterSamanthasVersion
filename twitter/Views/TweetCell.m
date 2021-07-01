@@ -17,6 +17,12 @@
     
     [super awakeFromNib];
     
+    UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserProfile:)];
+    
+    [self.profileView addGestureRecognizer:profileTapGestureRecognizer];
+    [self.profileView setUserInteractionEnabled:YES];
+
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -40,6 +46,11 @@
     self.profileView.image = nil;
     [self.profileView setImageWithURL:url];
     
+}
+
+- (void) didTapUserProfile:(UITapGestureRecognizer *)sender{
+    //Call method delegate
+    [self.delegate tweetCell:self didTap:self.tweet.user];
 }
 
 - (IBAction)didTapFavorite:(id)sender {

@@ -15,8 +15,9 @@
 #import "ComposeViewController.h"
 #import "DateTools/DateTools.h"
 #import "DetailsViewController.h"
+#import "ProfileViewController.h"
 
-@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, TweetCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -106,6 +107,11 @@
     
 }
 
+- (void)tweetCell:(TweetCell *)tweetCell didTap:(User *)user{
+    // Perform segue to profile view controller
+    [self performSegueWithIdentifier:@"profileSegue" sender:user];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -121,6 +127,9 @@
         Tweet *tweet = self.arrayOfTweets[indexPath.row];
         DetailsViewController *detailsViewController = [segue destinationViewController];
         detailsViewController.tweet = tweet;
+    } else if ([segue.identifier isEqual:@"profileSegue"]) {
+        ProfileViewController *profileController = [segue destinationViewController];
+        profileController.user = sender;
     }
 
 }
@@ -131,6 +140,7 @@
     TweetCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
     [cell updateWithTweet:tweet];
+    cell.delegate = self;
     return cell;
      
 }

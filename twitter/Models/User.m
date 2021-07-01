@@ -18,6 +18,24 @@
         self.name = dictionary[@"name"];
         self.screenName = dictionary[@"screen_name"];
         self.profilePicture = dictionary[@"profile_image_url_https"];
+        self.tweetCount = [dictionary[@"statuses_count"] intValue];
+        self.followerCount = [dictionary[@"friends_count"] intValue];
+        self.followingCount = [dictionary[@"followers_count"] intValue];
+        
+        // Format and set createdAtString
+        NSString *createdAtOriginalString = dictionary[@"created_at"];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        // Configure the input format to parse the date string
+        formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+        // Convert String to Date
+        NSDate *date = [formatter dateFromString:createdAtOriginalString];
+        self.dateCreated = date;
+        
+        // Configure output format
+        formatter.dateStyle = NSDateFormatterMediumStyle;
+        formatter.timeStyle = NSDateFormatterNoStyle;
+        // Convert Date to String
+        self.createdAtString = [formatter stringFromDate:date];
         
     }
     

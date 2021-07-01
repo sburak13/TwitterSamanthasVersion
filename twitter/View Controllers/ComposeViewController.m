@@ -10,6 +10,7 @@
 #import "APIManager.h"
 
 @interface ComposeViewController () <UITextViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITextView *tweetTextView;
 @property (weak, nonatomic) IBOutlet UILabel *tweetCharCount;
 
