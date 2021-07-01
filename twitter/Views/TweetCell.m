@@ -90,7 +90,7 @@
             }
         }];
     } else {
-        self.tweet.favoriteCount -= 1;
+        self.tweet.retweetCount -= 1;
         [[APIManager shared] unretweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
             if(error){
                  NSLog(@"Error unretweeting tweet: %@", error.localizedDescription);
