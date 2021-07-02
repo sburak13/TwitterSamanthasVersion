@@ -42,7 +42,10 @@ The following **optional** features are implemented:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
+UPDATED GIF:
+![](https://i.imgur.com/5XAeSea.gif)
 
+OLD GIF:
 ![](https://i.imgur.com/6mbVC9Z.gif)
 
 ## Notes
