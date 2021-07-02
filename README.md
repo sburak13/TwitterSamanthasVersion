@@ -43,12 +43,12 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://media.giphy.com/media/UCWxL8U0RdngLy1ZFU/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+New Gif Link:
 
-Contains Remaining Features:
-![](https://i.imgur.com/wHlziJo.gif)
+https://media.giphy.com/media/pkrZUREYIO5Fxs5vjg/giphy.gif
 
-Original:
+Original Gif:
+
 ![](https://i.imgur.com/6mbVC9Z.gif)
 
 ## Notes
