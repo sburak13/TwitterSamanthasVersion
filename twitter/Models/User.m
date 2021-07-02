@@ -18,6 +18,8 @@
         self.name = dictionary[@"name"];
         self.screenName = dictionary[@"screen_name"];
         self.profilePicture = dictionary[@"profile_image_url_https"];
+        self.profilePicture = [self.profilePicture
+           stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
         self.tweetCount = [dictionary[@"statuses_count"] intValue];
         self.followerCount = [dictionary[@"friends_count"] intValue];
         self.followingCount = [dictionary[@"followers_count"] intValue];
