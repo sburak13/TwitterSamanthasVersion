@@ -21,8 +21,8 @@
         self.profilePicture = [self.profilePicture
            stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
         self.tweetCount = [dictionary[@"statuses_count"] intValue];
-        self.followerCount = [dictionary[@"friends_count"] intValue];
-        self.followingCount = [dictionary[@"followers_count"] intValue];
+        self.followerCount = [dictionary[@"followers_count"] intValue];
+        self.followingCount = [dictionary[@"friends_count"] intValue];
         
         // Format and set createdAtString
         NSString *createdAtOriginalString = dictionary[@"created_at"];
