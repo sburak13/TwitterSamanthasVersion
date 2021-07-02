@@ -53,6 +53,8 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
+![](https://i.imgur.com/XEmlJRT.gif)
+
 <img src='https://media.giphy.com/media/lZorMwkIBHcGrqNYcp/giphy.gif' title='Twitter Demo' width='' alt='Twitter Demo' />
 
 
