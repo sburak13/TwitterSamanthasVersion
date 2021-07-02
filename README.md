@@ -43,6 +43,8 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
+<img src='https://media.giphy.com/media/UCWxL8U0RdngLy1ZFU/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 Contains Remaining Features:
 ![](https://i.imgur.com/wHlziJo.gif)
 
