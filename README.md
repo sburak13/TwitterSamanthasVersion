@@ -43,7 +43,7 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 UPDATED GIF:
-![](https://i.imgur.com/BZX9xBH.gif)
+![](https://i.imgur.com/cTiLW9S.gif)
 
 OLD GIF:
 ![](https://i.imgur.com/6mbVC9Z.gif)
